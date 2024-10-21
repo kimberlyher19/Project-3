@@ -10,6 +10,7 @@
     <style>
         /* Apply a background image to the body */
         body {
+            margin:40px 5px 1px 1px;
             font-family: Times, sans-serif;
             text-align: center;
             background-image: url("C://Users//vikto//OneDrive//Рабочий%20стол//GroupProject3//Project-3//SPOTIFY2.jpg");
@@ -18,7 +19,7 @@
             background-repeat: no-repeat;
         }
         .chart { 
-            margin: 50px 10px 5px 5px;  
+            margin: 30px 10px 5px 5px;  
             background-color: rgba(255, 255, 255, 0.8);
             padding: 5px; 
         }
@@ -35,8 +36,13 @@
         <select id="visualization-type">
             <option value="Top_10_Artists_by_Number_of_Songs">Top 10 artists by amount of songs</option>
             <option value="Top_10_Artists_by_Number_of_Songs_and_Popularity">Top 10 Artists</option>
-            <option value="bottom_10_loudness_valence">Bottom 10% least popular songs: loudness vs valence</option>
-            <option value="top_10_loudness_valence">Top 10% most popular songs: loudness vs valence</option>
+            <option value="bottom_10_percent_loudness_valence">Bottom 10% least popular songs: loudness vs valence</option>
+            <option value="top_10_percent_loudness_valence">Top 10% most popular songs: loudness vs valence</option>
+            <option value="Average_Danceability_and_Energy">Average danceability and energy</option>
+            <option value="Average_Tempo_Distribution_by_Genre">Average tempo distribution by genre</option>
+            <option value="Genre_Distribution_of_Selected_Artists">Genre distribution of selected artists</option>
+            <option value="Song_Genres_Distribution">Song genres distribution</option>
+            <option value="Song_Popularity_Trends">Song popularity trends</option>
         </select>
     </div>
 
@@ -58,16 +64,36 @@
                     renderTop10ArtistsByNumberOfSongs();
                     descriptionText = "This is awesome!This chart is something different, never seen anything like that in my entire life";
                     break;               
-                case 'bottom_10_loudness_valence':
+                case 'bottom_10_percent_loudness_valence':
                     renderBottom10LoudnessValence();
                     descriptionText = "Good stuff";
                     break;
-                case 'top_10_loudness_valence':
+                case 'top_10_percent_loudness_valence':
                     renderTop10LoudnessValence();
                     descriptionText = "Top is top no matter what";
                     break;
                 case 'Top_10_Artists_by_Number_of_Songs_and_Popularity':
                     renderTop10ArtistsByNSP();
+                    descriptionText = "Cool image";
+                    break;
+                case 'Average_Danceability_and_Energy':
+                    renderADaE();
+                    descriptionText = "Cool image";
+                    break;
+                case 'Average_Tempo_Distribution_by_Genre':
+                    renderATDbG();
+                    descriptionText = "Cool image";
+                    break;
+                case 'Genre_Distribution_of_Selected_Artists':
+                    renderGDoSA();
+                    descriptionText = "Cool image";
+                    break;
+                case 'Song_Genres_Distribution':
+                    renderSongGenresDistribution();
+                    descriptionText = "Cool image";
+                    break;
+                case 'Song_Popularity_Trends':
+                    renderSongPopularityTrends();
                     descriptionText = "Cool image";
                     break;
             }
@@ -111,8 +137,48 @@
             document.getElementById("chart").innerHTML = "";  // Clear previous content
             document.getElementById("chart").appendChild(iframe);
         }
+        function renderADaE() {
+            var iframe = document.createElement("iframe");
+            iframe.src = "file:///C://Users//vikto//OneDrive//Рабочий%20стол//Project-3//Visuals_HTML//Average_Danceability_and_Energy.html";
+            iframe.width = "80%";
+            iframe.height = "400px";
+            document.getElementById("chart").innerHTML = "";  // Clear previous content
+            document.getElementById("chart").appendChild(iframe);
+        }
+        function renderATDbG() {
+            var iframe = document.createElement("iframe");
+            iframe.src = "file:///C://Users//vikto//OneDrive//Рабочий%20стол//Project-3//Visuals_HTML//Average_Tempo_Distribution_by_Genre.html";
+            iframe.width = "80%";
+            iframe.height = "400px";
+            document.getElementById("chart").innerHTML = "";  // Clear previous content
+            document.getElementById("chart").appendChild(iframe);
+        }
+        function renderGDoSA() {
+            var iframe = document.createElement("iframe");
+            iframe.src = "file:///C://Users//vikto//OneDrive//Рабочий%20стол//Project-3//Visuals_HTML//Genre_Distribution_of_Selected_Artists.html";
+            iframe.width = "60%";
+            iframe.height = "450px";
+            document.getElementById("chart").innerHTML = "";  // Clear previous content
+            document.getElementById("chart").appendChild(iframe);
+        }
+        function  renderSongGenresDistribution() {
+            var iframe = document.createElement("iframe");
+            iframe.src = "file:///C://Users//vikto//OneDrive//Рабочий%20стол//Project-3//Visuals_HTML//Song_Genres_Distribution.html";
+            iframe.width = "100%";
+            iframe.height = "450px";
+            document.getElementById("chart").innerHTML = "";  // Clear previous content
+            document.getElementById("chart").appendChild(iframe);
+        }
+        function  renderSongPopularityTrends() {
+            var iframe = document.createElement("iframe");
+            iframe.src = "file:///C://Users//vikto//OneDrive//Рабочий%20стол//Project-3//Visuals_HTML//Song_Popularity_Trends.html";
+            iframe.width = "100%";
+            iframe.height = "450px";
+            document.getElementById("chart").innerHTML = "";  // Clear previous content
+            document.getElementById("chart").appendChild(iframe);
+        }
         // Initially load the first option
-        fetchDataAndRender( 'top_10_loudness_valence');
+        fetchDataAndRender( 'Average_Tempo_Distribution_by_Genre');
   
     </script>
 
