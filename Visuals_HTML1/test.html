@@ -91,10 +91,10 @@ select {
             <option value="Top_10_Artists_by_Number_of_Songs">Top 10 artists by number of songs</option>
             <option value="Top_10_Artists_by_Number_of_Songs_and_Popularity">Top 10 artists by number of songs and average popularity</option>
             <option value="Average_Danceability_and_Energy">Average danceability and energy of top 10 artists</option>
-            <option value="Average_Tempo_Distribution_by_Genre">Average tempo distribution by genre</option>
-            <option value="Genre_Distribution_of_Selected_Artists">Genre distribution of selected artists</option>
-            <option value="Song_Popularity_Trends">Song popularity trends by year for top 10 artists</option>
             <option value="Song_Genres_Distribution">Song genres distribution</option>
+            <option value="Genre_Distribution_of_Selected_Artists">Genre distribution of selected artists</option>
+            <option value="Average_Tempo_Distribution_by_Genre">Average tempo distribution by genre</option>
+            <option value="Song_Popularity_Trends">Song popularity trends by year for top 10 artists</option>
             <option value="top_10_percent_loudness_valence">Top 10% most popular songs: loudness vs valence</option>
             <option value="bottom_10_percent_loudness_valence">Bottom 10% least popular songs: loudness vs valence</option>
 
@@ -173,7 +173,10 @@ select {
                     break;
                 case 'Genre_Distribution_of_Selected_Artists':
                     renderGDoSA();
-                    descriptionText = "This chart shows the genre distribution of selected artists";
+                    descriptionText = `
+                    <ul>
+                            <li>The top songs are exclusively categorized into two genres: Pop and Hip Hop.
+                    <ul>`;            
                     break;
                 case 'Song_Genres_Distribution':
                     renderSongGenresDistribution();
