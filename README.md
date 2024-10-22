@@ -10,7 +10,7 @@ The Spotify Analysis Project investigates the characteristics of the Top Spotify
 
 Through our analysis of the Top Hits Spotify dataset, we've found that artists such as Rihanna, Calvin Harris, and Eminem were the most listened to between 1999 and 2019. By examining musical features like danceability and energy, we discovered that songs with higher scores in these areas tend to be more popular. This indicates that listeners are drawn to music that inspires movement and creates an energetic atmosphere, particularly in genres like Pop and Hip-Hop.
 
-We also observed that popularity trends vary over time, suggesting that artists experience ups and downs in their success. These fluctuations may be influenced by factors like a lack of new releases or changes in their musical style. Moreover, characteristics such as loudness and valence reveal that songs with higher valence scores tend to attract more listeners than those with lower ratings.
+We also observed that popularity trends vary over time, suggesting that artists experience ups and downs in their success. These fluctuations may be influenced by factors like a lack of new releases or changes in their musical style. Moreover, characteristics such as loudness and valence indicate that songs with a more positive sound tend to be more popular than those with lower valence or less positivity.
 
 In conclusion, this analysis not only enhances our understanding of the attributes of artists and their songs but also sheds light on the factors that contribute to popularity in the music industry. It paves the way for further exploration into the changing preferences of music consumers and how emerging trends might shape future musical creations.
 
