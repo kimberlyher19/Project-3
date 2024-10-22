@@ -23,7 +23,7 @@ The Spotify dataset "Top Hits Spotify from 2000-2019" was acquired from Kaggle a
 Despite the dataset being titled 'Top Hits Spotify from 2000-2019,' we identified an outlier - a song released in 1999. We opted to include this song in our analysis to ensure that no unique data was inadvertently excluded.
 
 ## Folders:
-- Codes: Includes the "Data_cleanup_code" and the main SpotifyProject Jupyter Notebook code.
+- Codes: Includes the "Data_cleanup_code" and the main "SpotifyProject" Jupyter Notebook code. 
 - Dataset: Holds the CSV datasets used in this project:
     - "(original_csv)songs_normalize.csv" - original CSV file downloaded from Kaggle 
     - "(first_cleaned_ver)cleaned_songs_data" - first cleaned version of the dataset
@@ -119,6 +119,5 @@ Codes were referenced from class activities and we used ChatGPT when our codes w
 
 ## Project Status
 This project is complete. All deliverables, including data analysis, visualizations, and documentation, have been successfully implemented. Future improvements and optimizations may be explored, but for now, the core objectives have been fully achieved.
-
 
 ## Thank you for visiting our Spotify Analysis Project!

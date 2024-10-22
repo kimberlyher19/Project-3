@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Data Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <style>
+
+    /* Ensure the background image covers the full page */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    font-style: normal;
+    text-align: center;
+    background-image: url("spotify-page-1.jpg");
+    background-size: cover;
+    background-position: center 5%;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures the background stays fixed during scrolling */
+}
+
+/* Add margin to move content lower on the page */
+body {
+    margin-top: 100px; /* Adjust this value to control how far down the content starts */
+}
+
+.chart { 
+    margin: 30px 10px 5px 5px;  
+    padding: 20px; /* Increase padding to make it appear larger inside */
+    width: 80%; /* Increase the width of the chart */
+    height: 500px; /* Increase the height of the chart */
+    background-color: rgba(255, 255, 255, 0.8); /* Optional: Add a background for clarity */
+    border-radius: 10px; /* Optional: Rounded corners for a cleaner look */
+    display: inline-block; /* Keeps the chart centered */
+}
+
+.description {
+    margin-top: 10px;
+    font-size: 20px;
+    color: #080707;
+}
+
+footer {
+    margin-bottom: 20px;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+footer .description {
+    font-size: 18px;
+    color: rgb(5, 5, 5);
+    font-style: normal;
+}
+
+.description ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-top: 0; /* Reduces space above the list */
+    text-align: left;
+    color: #ffffff;
+    font-size: 24px; 
+}
+
+.description li {
+    margin-bottom: 5px;
+    font-size: 24px; 
+}
+
+select {
+    font-style: normal;
+    font-family: sans-serif;
+    font-size: 18px; 
+}
+
+    </style>
+</head>
+<body>
+    <div>
+        <select id="visualization-type">
+            <option value="welcome">Welcome! Select a visualization below:</option>
+            <option value="Top_10_Artists_by_Number_of_Songs">Top 10 artists by number of songs</option>
+            <option value="Top_10_Artists_by_Number_of_Songs_and_Popularity">Top 10 artists by number of songs and average popularity</option>
+            <option value="Average_Danceability_and_Energy">Average danceability and energy of top 10 artists</option>
+            <option value="Average_Tempo_Distribution_by_Genre">Average tempo distribution by genre</option>
+            <option value="Genre_Distribution_of_Selected_Artists">Genre distribution of selected artists</option>
+            <option value="Song_Popularity_Trends">Song popularity trends by year for top 10 artists</option>
+            <option value="Song_Genres_Distribution">Song genres distribution</option>
+            <option value="top_10_percent_loudness_valence">Top 10% most popular songs: loudness vs valence</option>
+            <option value="bottom_10_percent_loudness_valence">Bottom 10% least popular songs: loudness vs valence</option>
+
+        </select>
+    </div>
+
+    <div id="chart" class="chart"></div>
+
+    <footer>
+        <div id="description" class="description"></div>
+    </footer>
+
+    <script>
+        document.getElementById('visualization-type').addEventListener('change', function() {
+            const selectedOption = this.value;
+            fetchDataAndRender(selectedOption);
+        });
+
+        function fetchDataAndRender(option) {
+            let descriptionText = '';  
+            
+            switch(option) {
+                case 'Top_10_Artists_by_Number_of_Songs':
+                    renderTop10ArtistsByNumberOfSongs();
+                    descriptionText = `
+                        <ul>
+                            <li>Rihanna leads with the highest number of songs (Top Hits) - 22 songs total</li>
+                            <li>The average number of songs among the top 10 artists is 18.2 (rounded to 18).</li>
+                            <li>The mode (most frequent number of songs) is 16</li>
+                        </ul>`;
+                    break;               
+                case 'bottom_10_percent_loudness_valence':
+                    renderBottom10LoudnessValence();
+                    descriptionText = `
+                        <ul>
+                            <li>Less popular songs have a wider spread in loudness</li>
+                            <li>Lower valence tracks are more common among unpopular songs</li>
+                            <li>Few songs in this group reach high valence levels</li>
+                        </ul>`;
+                    break;
+                case 'top_10_percent_loudness_valence':
+                    renderTop10LoudnessValence();
+                    descriptionText = `
+                        <ul>
+                            <li>Popular songs tend to be moderately loud, around -6 dB</li>
+                            <li>Higher valence (positivity) correlates with popularity</li>
+                            <li>Most popular songs are clustered around 50%-80% valence</li>
+                        </ul>`;
+                    break;
+                case 'Top_10_Artists_by_Number_of_Songs_and_Popularity':
+                    renderTop10ArtistsByNSP();
+                    descriptionText = `
+                        <ul> 
+                            <li>Rihanna, Calvin Harris, and Eminem are the most consistent in maintaining high song popularity</li>
+                            <li>Artists like Kanye West and Taylor Swift have a broader spread of song popularity</li>
+                            <li>The most popular song is: "Without Me" by Eminem - Popularity: 87%</li>
+                        </ul>`;
+                    break;
+                case 'Average_Danceability_and_Energy':
+                    renderADaE();
+                    descriptionText = `
+                        <ul>
+                            <li>The top 10 most popular artists have an average value for danceability and energy over 60</li>
+                            <li>Calvin Harris and David Guetta have an average energy score above 80</li>
+                            <li>Danceability and energy may relate to why these artists are in the top 10 for popularity</li>
+                        </ul>`;
+                    break;
+                case 'Average_Tempo_Distribution_by_Genre':
+                    renderATDbG();
+                    descriptionText = `
+                        <ul>
+                            <li>The genre with the highest tempo is Easy Listening, while the genre with the lowest tempo is R&B</li>
+                            <li>Fast tempos evoke feelings of excitement, urgency, or joy, making them suitable for upbeat songs</li>
+                            <li>Songs with fast tempos are common in genres meant for parties, clubs, or high-energy environments</li>
+                        </ul>`;
+                    break;
+                case 'Genre_Distribution_of_Selected_Artists':
+                    renderGDoSA();
+                    descriptionText = "This chart shows the genre distribution of selected artists";
+                    break;
+                case 'Song_Genres_Distribution':
+                    renderSongGenresDistribution();
+                    descriptionText = `
+                        <ul>
+                            <li>Pop and hip-hop are the largest genres, with 872 pop songs and 719 hip-hop songs out of 1838 songs</li>
+                            <li>Easy listening, metal, and world/traditional have the lowest number of songs</li>
+                            <li>These niche genres are less popular compared to others</li>
+                        </ul>`;
+                    break;
+                case 'Song_Popularity_Trends':
+                    renderSongPopularityTrends();
+                    descriptionText = `
+                        <ul>
+                            <li>This graph shows the popularity trend of the top 10 artists over the years (1999-2020).</li>
+                            <li>No artist has consistently maintained high popularity over the years, showing fluctuating trends.</li>
+                            <li>An example is Britney Spears, who saw a rise in popularity from 53% in 2004 to 70% in 2011.</li>
+                        </ul>`;
+                    break;
+            }
+
+            // Updating the description with the new text
+            document.getElementById('description').innerHTML = descriptionText;
+        }
+
+        // Functions to render charts
+function renderBottom10LoudnessValence() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "bottom_10_percent_loudness_valence.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderTop10LoudnessValence() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "top_10_percent_loudness_valence.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderTop10ArtistsByNumberOfSongs() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Top_10_Artists_by_Number_of_Songs.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderTop10ArtistsByNSP() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Top_10_Artists_by_Number_of_Songs_and_Popularity.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderADaE() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Average_Danceability_and_Energy.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderATDbG() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Average_Tempo_Distribution_by_Genre.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderGDoSA() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Genre_Distribution_of_Selected_Artists.html";
+    iframe.width = "100%"; // Changed from "60%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderSongGenresDistribution() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Song_Genres_Distribution.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+
+function renderSongPopularityTrends() {
+    var iframe = document.createElement("iframe");
+    iframe.src = "Song_Popularity_Trends.html";
+    iframe.width = "100%"; // Changed from "80%" to "100%"
+    iframe.height = "500px"; // Increased height to 500px
+    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    document.getElementById("chart").appendChild(iframe);
+}
+        // Initially load the welcome image
+        fetchDataAndRender('Top_10_Artists_by_Number_of_Songs');  
+  
+    </script>
+
+
+</body>
+</html>
