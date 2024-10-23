@@ -9,8 +9,8 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     
     <style>
-
-    /* Ensure the background image covers the full page */
+           
+/* Ensure the background image covers the full page */
 html, body {
     margin: 0;
     padding: 0;
@@ -81,7 +81,6 @@ select {
     font-family: sans-serif;
     font-size: 18px; 
 }
-
     </style>
 </head>
 <body>
@@ -97,7 +96,6 @@ select {
             <option value="Song_Popularity_Trends">Song popularity trends by year for top 10 artists</option>
             <option value="top_10_percent_loudness_valence">Top 10% most popular songs: loudness vs valence</option>
             <option value="bottom_10_percent_loudness_valence">Bottom 10% least popular songs: loudness vs valence</option>
-
         </select>
     </div>
 
@@ -115,7 +113,17 @@ select {
 
         function fetchDataAndRender(option) {
             let descriptionText = '';  
-            
+        }
+            function fetchDataAndRender(option) {
+                if (option === 'welcome') {
+                document.getElementById("chart").innerHTML = "";
+                document.getElementById("chart").style.backgroundImage = "url('Welcome_image1.png')";
+                document.getElementById("chart").style.backgroundSize = "contain";
+                document.getElementById("chart").style.backgroundRepeat = "no-repeat";
+                document.getElementById("chart").style.backgroundPosition = "center";
+                return;
+            }    
+
             switch(option) {
                 case 'Top_10_Artists_by_Number_of_Songs':
                     renderTop10ArtistsByNumberOfSongs();
@@ -125,7 +133,8 @@ select {
                             <li>The average number of songs among the top 10 artists is 18.2 (rounded to 18)</li>
                             <li>The mode (most frequent number of songs) is 16</li>
                         </ul>`;
-                    break;               
+                    break;
+            
                 case 'bottom_10_percent_loudness_valence':
                     renderBottom10LoudnessValence();
                     descriptionText = `
@@ -207,88 +216,95 @@ select {
 function renderBottom10LoudnessValence() {
     var iframe = document.createElement("iframe");
     iframe.src = "bottom_10_percent_loudness_valence.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = "";  
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderTop10LoudnessValence() {
     var iframe = document.createElement("iframe");
     iframe.src = "top_10_percent_loudness_valence.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = ""; 
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderTop10ArtistsByNumberOfSongs() {
     var iframe = document.createElement("iframe");
     iframe.src = "Top_10_Artists_by_Number_of_Songs.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px";
+    document.getElementById("chart").innerHTML = ""; 
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderTop10ArtistsByNSP() {
     var iframe = document.createElement("iframe");
     iframe.src = "Top_10_Artists_by_Number_of_Songs_and_Popularity.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = ""; 
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderADaE() {
     var iframe = document.createElement("iframe");
     iframe.src = "Average_Danceability_and_Energy.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = ""; 
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderATDbG() {
     var iframe = document.createElement("iframe");
     iframe.src = "Average_Tempo_Distribution_by_Genre.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = "";
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderGDoSA() {
     var iframe = document.createElement("iframe");
     iframe.src = "Genre_Distribution_of_Selected_Artists.html";
-    iframe.width = "100%"; // Changed from "60%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = ""; 
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderSongGenresDistribution() {
     var iframe = document.createElement("iframe");
     iframe.src = "Song_Genres_Distribution.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = ""; 
     document.getElementById("chart").appendChild(iframe);
 }
 
 function renderSongPopularityTrends() {
     var iframe = document.createElement("iframe");
     iframe.src = "Song_Popularity_Trends.html";
-    iframe.width = "100%"; // Changed from "80%" to "100%"
-    iframe.height = "500px"; // Increased height to 500px
-    document.getElementById("chart").innerHTML = "";  // Clear previous content
+    iframe.width = "100%"; 
+    iframe.height = "500px"; 
+    document.getElementById("chart").innerHTML = "";  
     document.getElementById("chart").appendChild(iframe);
 }
-        // Initially load the welcome image
-        fetchDataAndRender('Top_10_Artists_by_Number_of_Songs');  
-  
+// Function to render the Welcome Image
+function renderWelcomeImage() {
+    var img = document.createElement("img");
+    img.src = "Welcome_image.jpg";
+    img.width = "100%"; 
+    img.height = "500px"; 
+    document.getElementById("chart").innerHTML = "";  
+    document.getElementById("chart").appendChild(img);
+}
+
+        // Initially load the welcome image when the page first loads
+        fetchDataAndRender('welcome');  
     </script>
-
-
 </body>
 </html>
