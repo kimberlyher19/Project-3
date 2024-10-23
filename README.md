@@ -28,8 +28,8 @@ Despite the dataset being titled 'Top Hits Spotify from 2000-2019,' we identifie
     - "(original_csv)songs_normalize.csv" - original CSV file downloaded from Kaggle 
     - "(first_cleaned_ver)cleaned_songs_data" - first cleaned version of the dataset
     - "project_3_clean" - final dataset used in code
-- Visuals_HTML: Contains the HTML file to launch live server and the HTML versions of the graphs/visualizations.
-- Visuals_PNG(use_for_README): PNG versions of the visuals used in the README file. 
+- HTML_Codes_and_Visuals: Contains the HTML file to launch live server and the HTML versions of the graphs used in the HTML code.
+- Visuals_PNG: PNG versions of the visuals used in the README file. 
 
 ## Content Information
 
@@ -37,50 +37,50 @@ Despite the dataset being titled 'Top Hits Spotify from 2000-2019,' we identifie
 
 ## Visuals: 
 
-### Top 10% Most Popular Songs: Loudness vs Valence: 
-![alt text](<Visuals_PNG(use _for_README)/Top_10_Percent.png>)
-
-This scatter plot shows the relationship between loudness (in decibels) and valence (a measure of musical positivity) for the top 10% of most popular songs. Each point represents a song, and the size and shade of the points correspond to the song's popularity. Darker and larger points indicate higher popularity.
-
-### Bottom 10% Most Popular Songs - Loudness vs. Valence: 
-![alt text](<Visuals_PNG(use _for_README)/Bottom_10_Percent.png>)
-
-This scatter plot shows the relationship between loudness and valence for the bottom 10% least popular songs. The plot follows a similar format to the previous chart but focuses on the least popular tracks.
-
 ### Top 10 Artists by Number of Songs: 
-![alt text](<Visuals_PNG(use _for_README)/Top_10_Artists_by_Number_of_Songs.png>)
+![alt text](<Visuals_PNG/Top_10_Artists_by_Number_of_Songs.png>)
 
 This bar chart visualizes the top 10 artists with the most songs in the dataset. Each bar represents an artist, with the height of the bar corresponding to the total number of songs they have contributed to the dataset. This chart helps you quickly identify which artists are most prolific in terms of the number of songs they have in the dataset. It is useful for understanding the concentration of music production among top artists.
 
 ### Top 10 Artists by Number of Songs and Average Popularity: 
-![alt text](<Visuals_PNG(use _for_README)/Top_10_Artists_by_Number_of_Songs_and_Popularity.png>)
+![alt text](<Visuals_PNG/Popularity_Percentages_of_Songs.png>)
 
 This chart compares the top 10 artists in terms of both the number of songs they have and their average popularity score. The chart helps to see not only which artists have the most songs but also whether they are popular on average. This gives a balanced view of both the quantity and the quality (in terms of popularity) of the songs contributed by the top 10 artists. You can identify whether prolific artists also tend to have higher popularity or not.
 
 ### Average Danceability and Energy of Top 10 Artists: 
-![alt text](<Visuals_PNG(use _for_README)/Danceability_and_Energy.png>)
+![alt text](<Visuals_PNG/Danceability_and_Energy.png>)
 
 This visualizes the average danceability and energy ratings for the songs of the top 10 artists. This chart helps to see how a song's danceability rating correlates to the energy of the song.
 
 ### Song Genres Distrbution: 
-![alt text](<Visuals_PNG(use _for_README)/Song_Genres_Distribution.png>)
+![alt text](<Visuals_PNG/Song_Genres_Distribution.png>)
 
 This chart displays the distribution of different genres within the dataset. Larger slices indicate genres that dominate the dataset, while smaller slices represent more niche genres.
 
 ### Genre Distribution of Pop and Hip Hop: 
-![alt text](<Visuals_PNG(use _for_README)/Genre_Distribution_of_Selected_Artists.png>)
+![alt text](<Visuals_PNG/Genre_Distribution_of_Selected_Artists.png>)
 
 This chart focuses on the genres of songs that belong to the top 10 artists. Seeing that there are only two genres, we can determine which genres are the most popular amongst listeners.
 
 ### Song Popularity Trends by Year for Top 10 Artists: 
-![alt text](<Visuals_PNG(use _for_README)/Song_Popularity_Trends.png>)
+![alt text](<Visuals_PNG/Song_Popularity_Trends.png>)
 
 This line chart tracks the popularity of songs over time for the top 10 artists. Each line represents an artist, and the y-axis reflects the average song popularity, while the x-axis shows the release years of the songs. This visualization reveals the trajectory of each artist's popularity over the years. By examining the trends, you can see if an artist's music has gained or lost popularity over time. It highlights the evolution of music preferences and artist success throughout different periods.
 
 ### Average Tempo Distribution by Genre: 
-![alt text](<Visuals_PNG(use _for_README)/Average_Tempo_Distribution_by_Genre.png>)
+![alt text](<Visuals_PNG/Average_Tempo_Distribution_by_Genre.png>)
 
 This pie chart shows the proportion of different genres based on their average tempos. Each slice represents a genre, and the size of the slice corresponds to the average tempo of that genre compared to others. This visualization highlights which genres have higher average tempos. You can quickly identify if a genre is more characterized by fast-paced music (e.g., electronic genres) or slower rhythms (e.g., ballads).
+
+### Top 10% Most Popular Songs: Loudness vs Valence: 
+![alt text](<Visuals_PNG/Top_10_Percent.png>)
+
+This scatter plot shows the relationship between loudness (in decibels) and valence (a measure of musical positivity) for the top 10% of most popular songs. Each point represents a song, and the size and shade of the points correspond to the song's popularity. Darker and larger points indicate higher popularity.
+
+### Bottom 10% Most Popular Songs - Loudness vs. Valence: 
+![alt text](<Visuals_PNG/Bottom_10_Percent.png>)
+
+This scatter plot shows the relationship between loudness and valence for the bottom 10% least popular songs. The plot follows a similar format to the previous chart but focuses on the least popular tracks.
 
 
 ## Dependencies and Libraries:
